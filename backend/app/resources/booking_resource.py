@@ -35,7 +35,3 @@ async def get_all_bookings():
     booking = Booking.get_all()
     return booking if booking else []
 
-
-@router.get("/users/{username}", tags=["users"])
-async def read_user(username: str):
-    return {"username": username}
