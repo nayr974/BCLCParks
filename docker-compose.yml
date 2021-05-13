@@ -13,7 +13,30 @@ services:
       - "80"
     networks:
       - bclcparks
-
+  bpp-app:
+    build:
+        context: backend
+    env_file: ./backend/.env
+    depends_on:
+      - bpp-db
+    environment:
+        SQLALCHEMY_DATABASE_URI: "postgresql://${POSTGRESQL_HOST}/${POSTGRESQL_USER}"
+    ports:
+      - 5000:5000
+    volumes:
+      - ./backend/app/:/app/
+    restart: always
+  bpp-db:
+    image: "postgres:12-alpine"
+    environment:
+      - POSTGRES_USER=${POSTGRESQL_USER}
+      - POSTGRES_PASSWORD=${POSTGRESQL_PASSWORD}
+    ports:
+      - ${POSTGRESQL_PORT}:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+volumes:
+  postgres-data:
 networks:
   bclcparks:
     driver: bridge
