@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  nginx-react:
+    container_name: bclcparks
+    build:
+        context: bclcparks/
+    command: "nginx -g 'daemon off;'"
+    restart: always
+    ports:
+      - "80:80"
+    expose:
+      - "80"
+    networks:
+      - bclcparks
+
+networks:
+  bclcparks:
+    driver: bridge
