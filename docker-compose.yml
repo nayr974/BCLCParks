@@ -17,8 +17,6 @@ services:
     build:
         context: backend
     env_file: ./backend/.env
-    depends_on:
-      - bpp-db
     environment:
         SQLALCHEMY_DATABASE_URI: "postgresql://${POSTGRESQL_HOST}/${POSTGRESQL_USER}"
     ports:
