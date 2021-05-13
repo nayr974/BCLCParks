@@ -22,7 +22,7 @@ const TaskBoard = () => {
         <div className={styles.header}>
           <img
             src={"/img/logo.png"}
-            alt="ShiftGears Logo"
+            alt="BC(LC)Parks Logo"
             className={styles.logo}
           />
           <div className={styles.titleContainer}>

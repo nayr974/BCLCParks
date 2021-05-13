@@ -9,7 +9,7 @@ const savedTaskBoard = JSON.parse(localStorage.getItem("taskBoard"));
 // TODO: I'm not sure these constants and factory functions belong here, and should be moved.
 const firstTask = {
   id: uuid(),
-  title: "Welcome to ShiftGears!",
+  title: "Welcome to BC(LC)Parks!",
   priority: TaskPriority.LOW,
   content:
     "<center><img width='300px' src='https://cdn.dribbble.com/users/3347131/screenshots/6663172/smallworld.gif'/></center><br/><p>Hi! This is a simple task organizer to kick your productivity <i>into high gear</i>.</p><p>Try it out:</p><ul><li><strong>Add new tasks</strong> by clicking “Add another task” at the bottom of any lane.</li><li><strong>Edit, or delete tasks</strong> by clicking the pencil or trash can icons on that task.</li><li><strong>Move tasks around</strong> by clicking and dragging them.</li><li>You can also <strong>add, remove, and edit lanes</strong>!</li></ul>",
@@ -32,8 +32,8 @@ const getDefaultLane = () => ({
 const defaultState = {
   taskCounter: 0,
   taskBoard: {
-    title: "ShiftGears Task Board",
-    subtitle: "Revving up your productivity",
+    title: "BC(LC)Parks Task Board",
+    subtitle: "Your chance to win a lifetime experience at one BC park",
     lanes: [
       {
         id: uuid(),
@@ -80,9 +80,7 @@ export const taskBoardSlice = createSlice({
       const lane = state.taskBoard.lanes.find(
         (lane) => lane.id === action.payload
       );
-      lane.tasks.push(
-        getDefaultTask()
-      );
+      lane.tasks.push(getDefaultTask());
     },
     updateTask: (state, action) => {
       // This is probably not as efficient as the task being aware of which lane it is in,
