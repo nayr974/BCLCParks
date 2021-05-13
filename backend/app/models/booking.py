@@ -18,7 +18,7 @@ class Booking(db.Model):
     application_datetime = db.Column(db.Datetime, nullable=False, default=datetime.datetime.now())
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<Booking %r>' % self.id
 
     @classmethod
     def get_booking_by_email_and_date(email, date):
