@@ -17,8 +17,8 @@ const mockTask = {
   content: "Do it now!",
 };
 const mockTaskBoard = {
-  title: "ShiftGears Task Board",
-  subtitle: "Revving up your productivity",
+  title: "BC(LC)Parks Task Board",
+  subtitle: "Your chance to win a lifetime experience at one BC park",
   lanes: [
     {
       id: "1",
