@@ -1,5 +1,8 @@
 from sqlalchemy import Column, Integer, String, DateTime, Date, Boolean, ForeignKey
+from sqlalchemy.ext.hybrid import hybrid_property
+
 from models.base import Base
+from models.booking import Booking
 
 class Trailhead(Base):
     __tablename__ = "trailhead"
@@ -20,3 +23,7 @@ class Trailhead(Base):
     @classmethod
     def get_all_trailheads_by_park_name(cls, park_name):
         return cls.query.filter(park_name=park_name).all()
+
+    @classmethod
+    def get_all_trailheads(cls):
+        return cls.query.all()

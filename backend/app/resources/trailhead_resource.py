@@ -18,12 +18,9 @@ async def get_trailhead(trailhead_id: int):
     return trailhead
 
 
-@router.get("/{park_name}")
-async def get_all_trailheads_for_park(park_name: str):
-    trailheads = Trailhead.get_all_trailheads_by_park_name(park_name)
-    if not trailheads:
-        HTTPException(status_code=404, detail=f'There were no trailheads found for {park_name}')
-    return trailheads
+@router.get("/")
+async def get_all_trailheads():
+    return Trailhead.get_all_trailheads()
 
 
 
