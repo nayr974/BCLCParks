@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-import TaskBoard from "components/task-board/TaskBoard";
+import BookingBoard from "components/booking/BookingBoard";
 
 function App() {
   return (
     <div className="App">
       <div className="AppContainer">
-        <TaskBoard />
+        <BookingBoard />
       </div>
     </div>
   );

@@ -1,7 +1,5 @@
 .taskboard {
   padding-top: 76px;
-  display: flex;
-  width: fit-content;
   min-height: calc(100vh - 64px);
   gap: 24px;
   margin: 24px;
@@ -22,6 +20,7 @@
   width: 100%;
   flex-grow: 1;
 }
+
 .subtitle {
   padding-left: 12px;
   font-size: 24px;

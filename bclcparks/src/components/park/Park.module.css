@@ -1,0 +1,23 @@
+.task {
+  border-radius: 0.5em;
+  margin-bottom: 10px;
+}
+
+.task > ul {
+  border-radius: 0.5em;
+}
+
+.icon {
+  font-size: 18px !important;
+}
+
+.park {
+  border-radius: 0.7em;
+  padding: 1em;
+  border-left-color: #dedede;
+  border-right-color: #dedede;
+  border-width: 12px;
+  border-top-width: 0;
+  border-bottom-width: 0;
+  border-style: solid;
+}

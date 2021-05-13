@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "app/prop-types";
 import styles from "./LaneView.module.css";
-import Task from "components/task/Task";
+import Park from "components/park/Park";
 import { Typography, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import AddButtonOutlined from "components/common/AddButtonOutlined";
@@ -54,7 +54,7 @@ const LaneView = (props) => {
         )}
       </div>
       {props.lane.tasks?.map((task, index) => (
-        <Task key={task.id} task={task} taskIndex={index} />
+        <Park key={task.id} task={task} taskIndex={index} />
       ))}
       <AddButtonOutlined label="Add another task" onClick={props.onAdd} />
     </div>
