@@ -15,4 +15,4 @@ COPY . .
 
 # Run the server
 EXPOSE 5000
-CMD [ "flask", "run"]
+CMD [ "uvicorn", "app:app", "--reload"]
