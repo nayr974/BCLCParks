@@ -18,7 +18,6 @@ class Booking(Base):
     num_of_persons = Column(Integer) # required if booking_type = PERSON
     vehicle_licence_plate = Column(String(12)) # required if booking_type = VEHICLE
     application_datetime = Column(DateTime, nullable=False, default=datetime.datetime.now())
-    state = Column(String, nullable=False, default="WAITING") #["WAITING","LOTTERY_WIN", "LOTTERY LOSS"]
     
 
     trailhead = relationship("Trailhead")
