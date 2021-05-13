@@ -1,14 +1,11 @@
-from typing import Optional
+import uvicorn
 from fastapi import FastAPI
-from .config import Config
 
-from fastapi_sqlalchemy import DBSessionMiddleware
+app = FastAPI()
 
-app: FastAPI = FastAPI()
+@app.post("/user/", response_model=User)
+def create_user(user: User):
+    return user
 
-# add middlewares
-app.add_middleware(DBSessionMiddleware, db_url=Config.DB_URL)
-
-@app.route("/")
-def hello_world():
-    return "<p>HELLO</p>"
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)

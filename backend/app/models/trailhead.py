@@ -1,14 +1,14 @@
-from ..extensions import db
+from sqlalchemy import Column, Integer, String, DateTime, Date, Boolean, ForeignKey
+from models.base import Base
 
-
-class Trailhead(db.Model):
+class Trailhead(Base):
     __tablename__ = "trailhead"
 
-    id = db.Column(db.Integer, primary_key=True)
-    park_name = db.Column(db.String(80), nullable=False)
-    trailhead_name = db.Column(db.String(80), nullable=False)
-    am_capacity = db.Column(db.Integer, nullable=False)
-    pm_capacity = db.Column(db.Integer, nullable=False)
+    id = Column(Integer, primary_key=True)
+    park_name = Column(String(80), nullable=False)
+    trailhead_name = Column(String(80), nullable=False)
+    am_capacity = Column(Integer, nullable=False)
+    pm_capacity = Column(Integer, nullable=False)
 
     def __repr__(self):
         return '<Trailhead %s, %s, %r, %r>' % self.park_name, self.trailhead_name, self.am_capacity, self.pm_capacity

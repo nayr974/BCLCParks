@@ -1,18 +1,17 @@
-FROM python:3.8
+# Pull base image
+FROM python:3.7
 
-# We copy just the requirements.txt first to leverage Docker cache
-RUN apt-get update
+# Set environment varibles
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-# Create working directory
-RUN mkdir /app
-WORKDIR /app
+WORKDIR /app/
 
-# Install the requirements
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Install dependencies
+RUN pip install pipenv
+COPY Pipfile Pipfile.lock /app/
+RUN pipenv install --system --dev
 
-COPY . .
+COPY . /app/
 
-# Run the server
-EXPOSE 5000
-CMD [ "uvicorn", "main:app", "--reload"]
+EXPOSE 8000

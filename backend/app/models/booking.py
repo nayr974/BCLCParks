@@ -1,21 +1,22 @@
 import datetime
-from ..extensions import db
+from models.base import Base
+from sqlalchemy import Column, Integer, String, DateTime, Date, Boolean, ForeignKey
 
 
-class Booking(db.Model):
+class Booking(Base):
     __tablename__ = 'booking'
 
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    phone_no = db.Column(db.String(15))
-    passcode = db.Column(db.String(20), nullable=False)
-    trailhead_id = db.Column(db.Integer, db.ForeignKey('trailhead.id'))
-    date = db.Column(db.Date, nullable=False)
-    am_or_pm = db.Column(db.Boolean, nullable=False)  # 0 = AM, 1 = PM
-    booking_type = db.Column(db.String, nullable=False)  # ["VEHICLE, PERSON"]
-    num_of_persons = db.Column(db.Integer)  # required if booking_type = PERSON
-    vehicle_licence_plate = db.Column(db.String(12))  # required if booking_type = VEHICLE
-    application_datetime = db.Column(db.Datetime, nullable=False, default=datetime.datetime.now())
+    id = Column(Integer, primary_key=True)
+    email = Column(String(120), unique=True, nullable=False)
+    phone_no = Column(String(15))
+    passcode = Column(String(20), nullable=False)
+    trailhead_id = Column(Integer, ForeignKey('trailheadid'))
+    date = Column(Date, nullable=False)
+    am_or_pm = Column(Boolean, nullable=False) # 0 = AM, 1 = PM
+    booking_type = Column(String, nullable=False ) # ["VEHICLE, PERSON"]
+    num_of_persons = Column(Integer) # required if booking_type = PERSON
+    vehicle_licence_plate = Column(String(12)) # required if booking_type = VEHICLE
+    application_datetime = Column(DateTime, nullable=False, default=datetime.datetime.now())
 
     def __repr__(self):
         return '<Booking %r>' % self.id
