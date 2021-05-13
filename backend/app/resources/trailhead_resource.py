@@ -11,7 +11,7 @@ router = APIRouter(
 
 
 @router.get("/{trailhead_id}")
-async def get_booking(trailhead_id: int):
+async def get_trailhead(trailhead_id: int):
     trailhead = Trailhead.get_by_id(trailhead_id)
     if not trailhead:
         raise HTTPException(status_code=404, detail='No trailhead found for that ID.')
@@ -19,8 +19,11 @@ async def get_booking(trailhead_id: int):
 
 
 @router.get("/{park_name}")
-async def get_all_bookings(park_name: str):
+async def get_all_trailheads_for_park(park_name: str):
     trailheads = Trailhead.get_all_trailheads_by_park_name(park_name)
     if not trailheads:
         HTTPException(status_code=404, detail=f'There were no trailheads found for {park_name}')
     return trailheads
+
+
+
