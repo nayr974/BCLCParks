@@ -1,6 +1,4 @@
-# The ShiftGears Task Board - Revving up your productivity
-
-[Try ShiftGears right now by clicking this link!](https://nayr974.github.io/)
+# BCLC Parks - Your chance to win a lifetime experience at one BC park!
 
 ## TABLE OF CONTENTS
 [Description](#description)
@@ -10,7 +8,7 @@
 [How to Develop](#how-to-develop)
 
 ## DESCRIPTION
-In this repository is a web application that is a simple task board. It allows users to add, edit, and remove tasks. Additionally, users can create "lanes" for their tasks and move tasks between them.
+Your chance to win a lifetime experience at one BC park!
 
 ## HOW TO RUN
 
@@ -22,7 +20,7 @@ Access the web application with a web browser at the URL: http://localhost:80/
 
 ## HOW TO DEVELOP
 
-[See details on development in the ShiftGears project folder README](shift-gears/README.md)
+[See details on development in the ShiftGears project folder README](bclcparks/README.md)
 
 ## ATTRIBUTIONS
 
