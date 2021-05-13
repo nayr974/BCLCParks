@@ -32,6 +32,6 @@ async def get_booking(booking_id: int):
 
 @router.get("/")
 async def get_all_bookings():
-    booking = Booking.get_all()
+    booking = Booking.get_all_bookings()
     return booking if booking else []
 
