@@ -20,7 +20,7 @@ Access the web application with a web browser at the URL: http://localhost:80/
 
 ## HOW TO DEVELOP
 
-[See details on development in the ShiftGears project folder README](bclcparks/README.md)
+[See details on development in the bclcparks project folder README](bclcparks/README.md)
 
 ## ATTRIBUTIONS
 
