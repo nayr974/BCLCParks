@@ -21,5 +21,13 @@ class Booking(db.Model):
         return '<Booking %r>' % self.id
 
     @classmethod
-    def get_booking_by_email_and_date(email, date):
-        return cls.filter(email=email, date=date).first()
+    def get_booking_by_email_and_date(cls, email, date):
+        return cls.filter(email=email, date=date).one_or_none()
+
+    @classmethod
+    def get_booking_by_id(cls, id):
+        return cls.filter(id=id).one_or_none()
+
+    @classmethod
+    def get_all_bookings(cls):
+        return cls.all()

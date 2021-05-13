@@ -22,9 +22,18 @@ async def create_booking(booking: Booking_Model):
     return booking
 
 
-@router.get("/users/me", tags=["users"])
-async def read_user_me():
-    return {"username": "fakecurrentuser"}
+@router.get("/{booking_id}")
+async def get_booking(booking_id: int):
+    booking = Booking.get_by_id(booking_id)
+    if not booking:
+        raise HTTPException(status_code=404, detail='No booking found for that ID.')
+    return booking
+
+
+@router.get("/")
+async def get_all_bookings():
+    booking = Booking.get_all()
+    return booking if booking else []
 
 
 @router.get("/users/{username}", tags=["users"])
