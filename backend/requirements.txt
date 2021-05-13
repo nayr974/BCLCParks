@@ -1,10 +1,9 @@
 alembic==1.6.2
 click==7.1.2
 fastapi==0.65.1
+fastapi-migrations==0.0.4
+FastAPI-SQLAlchemy==0.2.1
 flake8==3.9.2
-Flask==2.0.0
-Flask-Migrate==2.7.0
-Flask-SQLAlchemy==2.5.1
 greenlet==1.1.0
 h11==0.12.0
 itsdangerous==2.0.0

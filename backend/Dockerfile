@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.8
 
 # We copy just the requirements.txt first to leverage Docker cache
 RUN apt-get update
