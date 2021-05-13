@@ -4,14 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-fastapi = "*"
-fastapi-sqlalchemy = "*"
-pydantic = "*"
-alembic = "*"
-psycopg2 = "*"
-uvicorn = "*"
-python-dotenv = "*"
-factory-boy = "*"
 
 [dev-packages]
 

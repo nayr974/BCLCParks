@@ -10,4 +10,4 @@ class Config(object):
     DB_URL = "postgresql+psycopg2://{0}:{1}@{2}:{3}/{4}".format(DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME)
     # SqlAlchemy config
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = DB_URL
+    SQLALCHEMY_DATABASE_URL = DB_URL

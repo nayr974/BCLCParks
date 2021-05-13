@@ -1,5 +1,7 @@
+from datetime import date
 from sqlalchemy import Column, Integer, String, DateTime, Date, Boolean, ForeignKey
 from models.base import Base
+
 
 class Trailhead(Base):
     __tablename__ = "trailhead"
@@ -20,3 +22,7 @@ class Trailhead(Base):
     @classmethod
     def get_all_trailheads_by_park_name(cls, park_name):
         return cls.query.filter(park_name=park_name).all()
+
+    @classmethod
+    def get_available_allocation(cls, date:date):
+        return cls.query.filter_by()

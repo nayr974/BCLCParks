@@ -1,9 +1,12 @@
+from datetime import date
+
 from fastapi import APIRouter, HTTPException
 
 from .resource_models import Booking_Model
 
 from models.booking import Booking
-
+from data_gen import _genBooking
+ 
 router = APIRouter(
     prefix="/booking",
     tags=["booking"],
@@ -35,3 +38,19 @@ async def get_all_bookings():
     booking = Booking.get_all_bookings()
     return booking if booking else []
 
+
+
+@router.post("/random")
+async def gen_bookings():
+    b: Booking = Booking(
+        id=1,
+        email="help@gmail.com",
+        phone_no="111-111-1111",
+        passcode="123456",
+        trailhead_id=1,
+        date=date.today(),
+        am_or_pm=False,
+        booking_type="PERSON", 
+        )
+    b.save()
+    return b
