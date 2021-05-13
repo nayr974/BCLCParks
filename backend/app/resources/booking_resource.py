@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
 
-from .resource_models import Booking
+from .resource_models import Booking_Model
 
-from ..models.booking import Booking_Model
+from models.booking import Booking
 
 router = APIRouter(
     prefix="/booking",

@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
 
-from .resource_models import Trailhead
+from .resource_models import Trailhead_Model
 
-from ..models.booking import Trailhead_Model
+from models.trailhead import Trailhead
 
 router = APIRouter(
     prefix="/trailhead",
