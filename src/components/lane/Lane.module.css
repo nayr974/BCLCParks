@@ -1,0 +1,20 @@
+.laneColor {
+  background-color: #2b2c33;
+}
+
+.dragColor {
+  background-color: #1d1d22;
+}
+
+.lane {
+  flex: 0 0 400px;
+  height: fit-content;
+  border-radius: 0.7em;
+  padding: 1em;
+  border-left-color: #dedede;
+  border-right-color: #dedede;
+  border-width: 12px;
+  border-top-width: 0;
+  border-bottom-width: 0;
+  border-style: solid;
+}

@@ -1,0 +1,12 @@
+.task {
+  border-radius: 0.5em;
+  margin-bottom: 10px;
+}
+
+.task > ul {
+  border-radius: 0.5em;
+}
+
+.icon {
+  font-size: 18px !important;
+}
