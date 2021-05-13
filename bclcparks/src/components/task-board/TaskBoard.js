@@ -21,28 +21,20 @@ const TaskBoard = () => {
       <div>
         <div className={styles.header}>
           <img
-            src={"/img/logo.png"}
+            src={"/img/BCLC_Logo.svg"}
+            style={{ height: "30px" }}
             alt="BC(LC)Parks Logo"
-            className={styles.logo}
+          />
+          <img
+            src={"/img/logo-bcparks-text.png"}
+            style={{ height: "30px" }}
+            alt="BC(LC)Parks Logo"
           />
           <div className={styles.titleContainer}>
-            <span className={styles.title}>{taskBoard.title}</span>
             <span className={styles.subtitle}>{taskBoard.subtitle}</span>
           </div>
           <Space className={styles.buttons}>
-            <Button type="primary" onClick={() => dispatch(saveTaskBoard())}>
-              Save
-            </Button>
-            <Popconfirm
-              key="delete"
-              placement="bottomRight"
-              title="Are you sure to reset the board? There is no going back."
-              onConfirm={() => dispatch(resetTaskBoard())}
-              okText="Yes"
-              cancelText="No"
-            >
-              <Button type="danger">Reset</Button>
-            </Popconfirm>
+            <div></div>
           </Space>
         </div>
         <div className={styles.taskboard}>
