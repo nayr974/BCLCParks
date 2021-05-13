@@ -10,7 +10,7 @@ class Booking(Base):
     email = Column(String(120), unique=True, nullable=False)
     phone_no = Column(String(15))
     passcode = Column(String(20), nullable=False)
-    trailhead_id = Column(Integer, ForeignKey('trailheadid'))
+    trailhead_id = Column(Integer, ForeignKey('trailhead.id'))
     date = Column(Date, nullable=False)
     am_or_pm = Column(Boolean, nullable=False) # 0 = AM, 1 = PM
     booking_type = Column(String, nullable=False ) # ["VEHICLE, PERSON"]

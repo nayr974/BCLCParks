@@ -34,6 +34,9 @@ target_metadata = Base.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
+#need to load these files
+import models 
+
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
 
