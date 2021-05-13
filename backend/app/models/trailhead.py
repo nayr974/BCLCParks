@@ -1,6 +1,8 @@
 from datetime import date
 from sqlalchemy import Column, Integer, String, DateTime, Date, Boolean, ForeignKey
+
 from models.base import Base
+from models.booking import Booking
 
 
 class Trailhead(Base):
@@ -9,6 +11,7 @@ class Trailhead(Base):
     id = Column(Integer, primary_key=True)
     park_name = Column(String(80), nullable=False)
     trailhead_name = Column(String(80), nullable=False)
+    capacity_type = Column(String(32), nullable=False)
     am_capacity = Column(Integer, nullable=False)
     pm_capacity = Column(Integer, nullable=False)
 
@@ -24,5 +27,5 @@ class Trailhead(Base):
         return cls.query.filter(park_name=park_name).all()
 
     @classmethod
-    def get_available_allocation(cls, date:date):
-        return cls.query.filter_by()
+    def get_all_trailheads(cls):
+        return cls.query.all()
