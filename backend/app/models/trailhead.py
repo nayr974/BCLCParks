@@ -1,5 +1,4 @@
 from sqlalchemy import Column, Integer, String, DateTime, Date, Boolean, ForeignKey
-from sqlalchemy.ext.hybrid import hybrid_property
 
 from models.base import Base
 from models.booking import Booking
@@ -10,6 +9,7 @@ class Trailhead(Base):
     id = Column(Integer, primary_key=True)
     park_name = Column(String(80), nullable=False)
     trailhead_name = Column(String(80), nullable=False)
+    capacity_type = Column(String(32), nullable=False)
     am_capacity = Column(Integer, nullable=False)
     pm_capacity = Column(Integer, nullable=False)
 
