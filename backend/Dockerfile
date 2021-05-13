@@ -15,4 +15,4 @@ COPY . .
 
 # Run the server
 EXPOSE 5000
-CMD [ "uvicorn", "app:app", "--reload"]
+CMD [ "uvicorn", "main:app", "--reload"]
