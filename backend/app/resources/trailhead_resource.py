@@ -1,8 +1,10 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
+from sqlalchemy.orm import Session
 
 from .resource_models import Trailhead_Model
 
 from models.trailhead import Trailhead
+from database import get_db
 
 router = APIRouter(
     prefix="/trailhead",
@@ -19,8 +21,8 @@ async def get_trailhead(trailhead_id: int):
 
 
 @router.get("/")
-async def get_all_trailheads():
-    return Trailhead.get_all_trailheads()
+async def get_all_trailheads(db: Session = Depends(get_db)):
+    return Trailhead.get_all_trailheads(db)
 
 
 

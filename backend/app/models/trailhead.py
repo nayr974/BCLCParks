@@ -2,7 +2,6 @@ from datetime import date
 from sqlalchemy import Column, Integer, String, DateTime, Date, Boolean, ForeignKey
 
 from models.base import Base
-from models.booking import Booking
 
 
 class Trailhead(Base):
@@ -27,5 +26,5 @@ class Trailhead(Base):
         return cls.query.filter(park_name=park_name).all()
 
     @classmethod
-    def get_all_trailheads(cls):
-        return cls.query.all()
+    def get_all_trailheads(cls, db):
+        return db.query(cls).all()
