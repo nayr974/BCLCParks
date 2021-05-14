@@ -8,7 +8,6 @@ import {
 } from "app/taskBoardSlice";
 import Park from "components/park/Park";
 import styles from "./BookingBoard.module.css";
-import { DragDropContext } from "react-beautiful-dnd";
 import AddButtonOutlined from "components/common/AddButtonOutlined";
 import { Button, Popconfirm, Space, Row, Col } from "antd";
 import { groupBy, uniq } from "lodash";
@@ -48,37 +47,13 @@ const BookingBoard = () => {
   const dispatch = useDispatch();
 
   return (
-    <DragDropContext onDragEnd={(result) => dispatch(moveTask(result))}>
-      <div>
-        <div className={styles.header}>
-          <img
-            src={"/img/BCLC_Logo.svg"}
-            style={{ height: "30px" }}
-            alt="BC(LC)Parks Logo"
-          />
-          <img
-            src={"/img/logo-bcparks-text.png"}
-            style={{ height: "30px" }}
-            alt="BC(LC)Parks Logo"
-          />
-          <div className={styles.titleContainer}>
-            <span className={styles.subtitle}>{taskBoard.subtitle}</span>
-          </div>
-          <Space className={styles.buttons}>
-            <div></div>
-          </Space>
-        </div>
-        <div className={styles.taskboard}>
-          <Row gutter={[24, 24]}>
-            {parks.map((park) => (
-              <Col span={12}>
-                <Park parkName={park} trailHeads={trailHeads[park]} />
-              </Col>
-            ))}
-          </Row>
-        </div>
-      </div>
-    </DragDropContext>
+    <Row gutter={[24, 24]}>
+      {parks.map((park) => (
+        <Col span={12}>
+          <Park parkName={park} trailHeads={trailHeads[park]} />
+        </Col>
+      ))}
+    </Row>
   );
 };
 

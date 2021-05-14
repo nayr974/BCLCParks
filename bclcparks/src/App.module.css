@@ -1,0 +1,64 @@
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  gap: 8px;
+}
+
+.title {
+  padding-left: 12px;
+  font-size: 36px;
+  line-height: 24px;
+  font-weight: bolder;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.subtitle {
+  padding-left: 12px;
+  font-size: 24px;
+  line-height: 18px;
+  font-style: italic;
+}
+
+.header {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px;
+  padding-left: 24px;
+  color: #fff;
+  background-color: rgba(9, 46, 9, 0.8);
+  justify-content: space-between;
+}
+
+.logo {
+  width: 64px;
+  height: 64px;
+  left: 0;
+}
+
+.buttons {
+  margin-left: auto;
+  padding-right: 12px;
+}
+
+.page {
+  padding-top: 76px;
+  min-height: calc(100vh - 64px);
+  gap: 24px;
+  margin: 24px;
+}
+
+.bg {
+  background-image: url("https://wallpapercave.com/wp/wmkw8ML.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: calc(100vh);
+}
