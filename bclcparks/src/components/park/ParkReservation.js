@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Button, Input, Radio, Form, Space } from "antd";
-import { SaveOutlined } from "@ant-design/icons";
+import { TagsOutlined } from "@ant-design/icons";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import PropTypes from "app/prop-types";
-import TaskPriorityIcon from "./TaskPriorityIcon";
 
 const propTypes = {
   initialValues: PropTypes.any.isRequired,
@@ -50,8 +49,8 @@ const ParkReservation = (props) => {
           </Form.Item>
         )}
         <Form.Item style={{ textAlign: "right" }}>
-          <Button type="primary" htmlType="submit">
-            <SaveOutlined />
+          <Button type="primary" htmlType="submit" size="large">
+            <TagsOutlined />
             Submit Reservation Request
           </Button>
         </Form.Item>

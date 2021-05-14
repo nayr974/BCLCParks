@@ -2,10 +2,26 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 import { message } from "antd";
 
-const initialState = {};
+const initialState = {
+  reservations: [],
+};
+
+export const getReservations = createAsyncThunk(
+  "booking/getReservations",
+  async (thunkAPI) => {
+    message.loading({
+      content: "Getting reservations...",
+      key: "RESERVATIONS",
+    });
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/todos/1"
+    );
+    return response.json();
+  }
+);
 
 export const submitReservation = createAsyncThunk(
-  "booking/submitReservationAPI",
+  "booking/submitReservation",
   async (values, thunkAPI) => {
     message.loading({
       content: "Making reservation request...",
@@ -23,18 +39,25 @@ export const bookingSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    [getReservations.fulfilled]: (state, action) => {
+      message.success({
+        content: "Retrieved reservations.",
+        key: "RESERVE",
+      });
+      alert(JSON.stringify(action.payload));
+      state.reservations = action.payload || {};
+    },
     [submitReservation.fulfilled]: (state, action) => {
       message.success({
         content: "Reservation request made. Good luck!",
         key: "RESERVE",
       });
-      message.success(JSON.stringify(action.payload));
     },
   },
 });
 
 export const {} = bookingSlice.actions;
 
-export const selectTaskBoard = (state) => state.taskBoard.taskBoard;
+export const selectReservations = (state) => state.reservations;
 
 export default bookingSlice.reducer;
