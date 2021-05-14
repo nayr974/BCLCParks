@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
 from datetime import date
 
 
@@ -23,3 +23,23 @@ class Trailhead_Model(BaseModel):
     trailhead_name: str
     am_capacity: int
     pm_capacity: int
+
+
+class RunLotteryRequest(BaseModel):
+    date: date
+    am_or_pm: bool
+    trailhead_id: int
+
+
+
+class TrailheadReservationsRequest(BaseModel):
+    date: date
+    am_or_pm: bool
+
+class TrailheadReservationsResponse(BaseModel):
+    total_bookings: int
+    total_interest: int
+    num_allocated_bookings: int
+    allocated_capacity: int
+    trailhead_capacity: int
+    allocated_bookings: List[Booking_Model]

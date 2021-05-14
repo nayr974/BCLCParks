@@ -7,3 +7,8 @@ class BookingState(enum.Enum):
     pass_offered = "PASS OFFERED"
     booking_confirmed = "BOOKING CONFIRMED"
     pass_canceled = "PASS CANCELED"
+
+class CapacityType(enum.Enum):
+    trail = "Trail"
+    vehicle = "Vehicle"
+    
