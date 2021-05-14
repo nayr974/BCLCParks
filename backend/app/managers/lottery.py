@@ -45,10 +45,11 @@ def runLottery(l: LotteryPool, db) -> List[Booking]:
     max_allocation: int = l.get_max_allocation()
 
     allocated_bookings: List[Booking] = [b for b in all_bookings if b.state != "WAITING"]
-
+    new_winners: List[Booking] = []
     current_allocation: int = len(allocated_bookings) if l.trailhead.capacity_type == "Vehicle" else sum([b.num_of_persons for b in allocated_bookings])
 
     print('Total Reservations: {}'.format(len(all_bookings)))
+    print("Active Reservations {}".format(len(allocated_bookings)))
     print('Trailhead Capacity: {}'.format(max_allocation))
     print('Allocation Request: {}'.format(total_interest))
     print('Current Allocation: {}'.format(current_allocation))
@@ -59,12 +60,16 @@ def runLottery(l: LotteryPool, db) -> List[Booking]:
             current_allocation +=  winner.num_of_persons
         else: #Vehicles allocation is one per booking
             current_allocation += 1
-        winner.state = "PASS OFFERED"
-        winner.send_offer_email()
-        print("WINNER: {}",winner) 
-        db.add(winner)
-        db.commit()
+        print("WINNER " + str(winner))
+        winner.state="PASS OFFERED"
+        new_winners.append(winner)
+        all_bookings.remove(winner)
     
-    print("FULLY ALLOCATED")
+    print('Final Allocation: {}'.format(current_allocation))
+       
+    db.bulk_save_objects(new_winners)
+    db.commit()
+    for b in new_winners:   
+        b.send_offer_email()
     pass
 
