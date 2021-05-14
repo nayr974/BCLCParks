@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "/home/jsyro/.local/share/virtualenvs/BCLCParks-P_S3xnbt/bin/python",
+    "python.analysis.extraPaths": ["backend/app"]
+}
