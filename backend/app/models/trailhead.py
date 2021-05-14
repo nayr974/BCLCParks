@@ -1,7 +1,8 @@
 from datetime import date
-from sqlalchemy import Column, Integer, String, DateTime, Date, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, Date, Boolean, ForeignKey, Enum
 
 from models.base import Base
+from models.model_enums import CapacityType
 
 
 class Trailhead(Base):
@@ -10,7 +11,7 @@ class Trailhead(Base):
     id = Column(Integer, primary_key=True)
     park_name = Column(String(80), nullable=False)
     trailhead_name = Column(String(80), nullable=False)
-    capacity_type = Column(String(32), nullable=False)
+    capacity_type = Column(Enum(CapacityType, values_callable=lambda obj: [e.value for e in obj]), nullable=False)
     am_capacity = Column(Integer, nullable=False)
     pm_capacity = Column(Integer, nullable=False)
 

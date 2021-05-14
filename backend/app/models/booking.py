@@ -20,7 +20,6 @@ class Booking(Base):
     trailhead_id = Column(Integer, ForeignKey('trailhead.id'), nullable=False)
     date = Column(Date, nullable=False)
     am_or_pm = Column(Boolean, nullable=False) # 1 = AM, 0 = PM
-    booking_type = Column(String, nullable=False ) # ["Vehicle, Trail"] this is wrong and should be inferred by trailhead capacity_type
     num_of_persons = Column(Integer) # required if booking_type = Trail
     vehicle_licence_plate = Column(String(12)) # required if booking_type = Vehicle
     application_datetime = Column(DateTime, nullable=False, default=datetime.datetime.now())
