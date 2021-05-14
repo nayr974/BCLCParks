@@ -27,8 +27,8 @@ class Booking(Base):
         return '<Booking %r>' % self.id
 
     @classmethod
-    def get_booking_by_email_and_date(cls, db, email, date, triadlhead_id):
-        return db.query(cls).filter(email=email, date=date, trailhead_id=triadlhead_id).one_or_none()
+    def get_booking_by_email_and_date(cls, db, email, date, trailhead_id):
+        return db.query(cls).filter(email=email, date=date, trailhead_id=trailhead_id).one_or_none()
 
     @classmethod
     def get_booking_by_id(cls, db, id):
