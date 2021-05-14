@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 @router.get("/{trailhead_id}")
-async def get_trailhead(db: Session = Depends(get_db), trailhead_id: int):
+async def get_trailhead(trailhead_id: int, db: Session = Depends(get_db)):
     trailhead = Trailhead.get_by_id(db, trailhead_id)
     if not trailhead:
         raise HTTPException(status_code=404, detail='No trailhead found for that ID.')
