@@ -1,67 +1,25 @@
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {} from "app/bookingSlice";
+
 import Park from "components/park/Park";
 import styles from "./BookingBoard.module.css";
-import AddButtonOutlined from "components/common/AddButtonOutlined";
 import { Button, Popconfirm, Space, Row, Col } from "antd";
 import { groupBy, uniq } from "lodash";
-
-const data = [
-  {
-    id: "1",
-    park_name: "Park1",
-    trailhead_name: "Trail1",
-    am_capacity: 5,
-    pm_capacity: 25,
-    capacity_type: "VEHICLE",
-  },
-  {
-    id: "2",
-    park_name: "Park1",
-    trailhead_name: "Trail1",
-    am_capacity: 5,
-    pm_capacity: 25,
-    capacity_type: "PERSON",
-  },
-  {
-    id: "3",
-    park_name: "Park2",
-    trailhead_name: "Trail1",
-    am_capacity: 5,
-    pm_capacity: 25,
-    capacity_type: "PERSON",
-  },
-  {
-    id: "4",
-    park_name: "Park3",
-    trailhead_name: "Trail1",
-    am_capacity: 5,
-    pm_capacity: 25,
-    capacity_type: "VEHICLE",
-  },
-  {
-    id: "5",
-    park_name: "Park4",
-    trailhead_name: "Trail1",
-    am_capacity: 5,
-    pm_capacity: 25,
-    capacity_type: "PERSON",
-  },
-  {
-    id: "6",
-    park_name: "Park5",
-    trailhead_name: "Trail1",
-    am_capacity: 5,
-    pm_capacity: 25,
-    capacity_type: "PERSON",
-  },
-];
-
-const parks = uniq(data.map((park) => park.park_name));
-const trailHeads = groupBy(data, "park_name");
+import { selectTrails, getTrails } from "app/bookingSlice";
 
 const BookingBoard = () => {
+  const trails = useSelector(selectTrails);
   const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false);
+
+  if (!loaded) {
+    dispatch(getTrails());
+    setLoaded(true);
+  }
+
+  const parks =
+    !loaded || !trails ? [] : uniq(trails.map((park) => park.park_name));
+  const trailHeads = !loaded || !trails ? [] : groupBy(trails, "park_name");
 
   return (
     <Row gutter={[24, 24]}>
@@ -72,8 +30,8 @@ const BookingBoard = () => {
             marginLeft: "auto",
             marginRight: "auto",
             width: "fit-content",
-            marginTop: "-12px",
-            marginBottom: "72px",
+            marginTop: "calc(50vh - 200px)",
+            marginBottom: "calc(50vh - 200px)",
           }}
         >
           <img
@@ -94,11 +52,12 @@ const BookingBoard = () => {
           </div>
         </div>
       </Col>
-      {parks.map((park, index) => (
-        <Col span={12}>
-          <Park index={index} parkName={park} trailHeads={trailHeads[park]} />
-        </Col>
-      ))}
+      {loaded &&
+        parks.map((park, index) => (
+          <Col span={12}>
+            <Park index={index} parkName={park} trailHeads={trailHeads[park]} />
+          </Col>
+        ))}
     </Row>
   );
 };
