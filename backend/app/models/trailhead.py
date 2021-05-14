@@ -15,7 +15,7 @@ class Trailhead(Base):
     pm_capacity = Column(Integer, nullable=False)
 
     def __repr__(self):
-        return '<Trailhead %s, %s, %r, %r>' % self.park_name, self.trailhead_name, self.am_capacity, self.pm_capacity
+        return '<Trailhead {},{},{},{}>'.format(self.park_name, self.trailhead_name, self.am_capacity, self.pm_capacity)
 
     @classmethod
     def get_trialhead_by_id(cls, db, id):

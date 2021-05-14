@@ -3,10 +3,11 @@ from datetime import date
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 
+from data_gen import genBookings
+
 from .resource_models import Booking_Model
 from models.booking import Booking
 from database import get_db
-from data_gen import _genBooking
  
 router = APIRouter(
     prefix="/booking",
@@ -42,15 +43,7 @@ async def get_all_bookings(db: Session = Depends(get_db)):
 
 
 @router.post("/random")
-async def gen_bookings(db: Session = Depends(get_db)):
-    b: Booking = Booking(
-        email="help@gmail.com",
-        phone_no="111-111-1111",
-        passcode="123456",
-        trailhead_id=1,
-        date=date.today(),
-        am_or_pm=False,
-        booking_type="PERSON", 
-        )
+async def gen_bookings():
+    b = genBookings()
     b.save()
     return b

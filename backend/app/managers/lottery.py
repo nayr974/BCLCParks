@@ -1,20 +1,13 @@
-import random
+import random, datetime
 
-from datetime import date
 from typing import List
 
 from models.trailhead import Trailhead
 from models.booking import Booking
 from models.booking_states import BookingState
 
-def LotteryPool(object):
-    date: date
-    trailhead: Trailhead
-    booking_type: str
-    am_or_pm: bool
-
-
-    def __init__(self, date:date, trailhead: Trailhead, booking_type: str, am_or_pm:bool):
+class LotteryPool(object):
+    def __init__(self, date: datetime.date, trailhead: Trailhead, booking_type: str, am_or_pm:bool):
         self.date = date
         self.trailhead = trailhead
         self.booking_type = booking_type

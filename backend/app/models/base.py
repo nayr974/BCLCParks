@@ -7,9 +7,9 @@ from database import get_db
 
 
 class MyBaseModel(object):
-    def save(self, db: Session = Depends(get_db)):
+    def save(self):
+        #fetch new session ideally we get the same one. 
         db=next(get_db())
-        print(db)
         db.add(self)
         db.commit()
 

@@ -9,28 +9,34 @@ from managers.lottery import LotteryPool
 
 from .booking_factory import BookingFactory
 
-def _genBooking(date: date, am_or_pm: bool, booking_type: str):
-    b = BookingFactory(
+def _genBooking(db, date: date, am_or_pm: bool, booking_type: str, th: Trailhead, batch_size = 1, ):
+    b = BookingFactory.create_batch(size=batch_size,
         date=date,
         am_or_pm=am_or_pm,
-        booking_type=booking_type,
-    )
+        trailhead_id = th.id,
+        booking_type=booking_type)
+    db.bulk_save_objects(b)
+    db.commit()
     return b
 
 
-def genBookings(): 
-    l = LotteryPool(date.today()
-                ,Trailhead.query.first()
-                ,random.choice(["VEHICLE","PERSON"])
-                ,random.choice([True, False]))
+def genBookings(db): 
+    l = LotteryPool(date=date.today(),
+                trailhead=db.query(Trailhead).first(),
+                booking_type= random.choice(["VEHICLE","PERSON"]),
+                am_or_pm=random.choice([True, False]))
 
-    pass
+    gen_bookings_for_lottery_pool(l, db)
+    
+    return
 
 
-def gen_bookings_for_lottery_pool(l: LotteryPool) -> List[Any]:
-    interest_output = l.get_max_allocation * 3
+def gen_bookings_for_lottery_pool(l: LotteryPool, db) -> List[Any]:
+    interest_output = l.get_max_allocation() * 3
     generated_interest = 0
+    print(l.__dict__)
     while generated_interest < interest_output: 
-        _genBooking(l.date, l.am_or_pm,l.booking_type, l.trailhead)
-
-    pass
+        print('GENERATING MORE {} < {} ', generated_interest, interest_output)
+        bookings = _genBooking(db, l.date, l.am_or_pm, l.booking_type, l.trailhead, interest_output//8)
+        generated_interest += sum([b.num_of_persons for b in bookings])
+    return
