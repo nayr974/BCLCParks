@@ -43,7 +43,7 @@ const data = [
 const Redemption = () => {
   const [spinning, setSpinning] = useState(true);
   return (
-    <div className={styles.bg}>
+    <div style={{ paddingTop: "48px" }}>
       <Row gutter={[24, 24]} justify="center">
         <Col span={24}>
           <div
@@ -68,9 +68,7 @@ const Redemption = () => {
         </Col>
         <Col span={12} style={{ textAlign: "center" }}>
           {!spinning && (
-            <div
-              style={{ backgroundColor: "rgba(0, 0, 0, .6)", padding: "12px" }}
-            >
+            <div className={styles.bg}>
               <Typography.Title level={1} style={{ color: "white" }}>
                 You've won a visit to a beautiful park.
               </Typography.Title>

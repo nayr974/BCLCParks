@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import taskBoardReducer from "./taskBoardSlice";
+import bookingReducer from "./bookingSlice";
 
 export const store = configureStore({
   reducer: {
-    taskBoard: taskBoardReducer,
+    booking: bookingReducer,
   },
 });

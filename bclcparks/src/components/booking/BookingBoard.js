@@ -1,11 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import {
-  selectTaskBoard,
-  addLane,
-  moveTask,
-  saveTaskBoard,
-  resetTaskBoard,
-} from "app/taskBoardSlice";
+import {} from "app/bookingSlice";
 import Park from "components/park/Park";
 import styles from "./BookingBoard.module.css";
 import AddButtonOutlined from "components/common/AddButtonOutlined";
@@ -67,7 +61,6 @@ const parks = uniq(data.map((park) => park.park_name));
 const trailHeads = groupBy(data, "park_name");
 
 const BookingBoard = () => {
-  const taskBoard = useSelector(selectTaskBoard);
   const dispatch = useDispatch();
 
   return (
@@ -79,7 +72,7 @@ const BookingBoard = () => {
             marginLeft: "auto",
             marginRight: "auto",
             width: "fit-content",
-            marginTop: "12px",
+            marginTop: "-12px",
             marginBottom: "72px",
           }}
         >

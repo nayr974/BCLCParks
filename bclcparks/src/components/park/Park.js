@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
 import PropTypes from "app/prop-types";
 import styles from "./Park.module.css";
 import { Card, Modal, Button, Typography } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import ParkReservation from "./ParkReservation";
+import { submitReservation } from "app/bookingSlice";
 //import TaskPriorityIcon from "./TaskPriorityIcon";
 
 const propTypes = {
@@ -12,9 +15,17 @@ const propTypes = {
 };
 
 const Park = (props) => {
+  const dispatch = useDispatch();
   const [booking, setBooking] = useState(false);
   const [trailhead, setTrailhead] = useState();
   const [am_or_pm, setAmPm] = useState(false);
+
+  const initialValues = trailhead && {
+    ...trailhead,
+    am_or_pm,
+    trailhead_id: trailhead?.id,
+    booking_type: trailhead?.capacity_type,
+  };
   return (
     <>
       <Card
@@ -24,10 +35,7 @@ const Park = (props) => {
         //extra={<ParkTreeIcon parkType={props.task.priority} />}
       >
         {props.trailHeads.map((trail) => (
-          <Card.Grid
-            style={{ width: "50%", textAlign: "center" }}
-            className={styles.cardgrid}
-          >
+          <Card.Grid className={styles.cardgrid}>
             <Typography.Title
               level={5}
             >{`${trail.trailhead_name} (${trail.capacity_type})`}</Typography.Title>
@@ -71,15 +79,9 @@ const Park = (props) => {
           footer={null}
         >
           <ParkReservation
-            initialValues={{
-              ...trailhead,
-              am_or_pm,
-              trailhead_id: trailhead.id,
-              booking_type: trailhead.capacity_type,
-            }}
+            initialValues={initialValues}
             onFinish={(values) => {
-              //dispatch(updateTask(values));
-              alert(values);
+              dispatch(submitReservation(values));
               setBooking(false);
             }}
           />

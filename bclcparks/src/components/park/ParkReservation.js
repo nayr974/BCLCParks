@@ -19,23 +19,18 @@ const ParkReservation = (props) => {
       <Form
         form={form}
         layout="vertical"
-        initialValues={props.task}
-        onFinish={(values) => {
-          props.onFinish(values);
-        }}
+        initialValues={props.initialValues}
+        onFinish={props.onFinish}
       >
         <Form.Item hidden name="trailhead_id" rules={[{ required: true }]} />
         <Form.Item hidden name="am_or_pm" rules={[{ required: true }]} />
         <Form.Item hidden name="booking_type" rules={[{ required: true }]} />
-
         <Form.Item label="Email:" name="email" rules={[{ required: true }]}>
           <Input />
         </Form.Item>
-
         <Form.Item label="Phone:" name="phone_no" rules={[{ required: true }]}>
           <Input />
         </Form.Item>
-
         {props.initialValues.booking_type === "PERSON" && (
           <Form.Item
             label="Number of people:"
@@ -45,7 +40,6 @@ const ParkReservation = (props) => {
             <Input />
           </Form.Item>
         )}
-
         {props.initialValues.booking_type === "VEHICLE" && (
           <Form.Item
             label="Vehicle license plate"
@@ -55,7 +49,6 @@ const ParkReservation = (props) => {
             <Input />
           </Form.Item>
         )}
-
         <Form.Item style={{ textAlign: "right" }}>
           <Button type="primary" htmlType="submit">
             <SaveOutlined />
