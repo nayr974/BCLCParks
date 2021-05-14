@@ -41,3 +41,7 @@ class Booking(Base):
     @classmethod
     def get_bookings_trailhead_date(cls, db, date:datetime.date, trailhead_id:int):
         return db.query(cls).filter(date=date, trailhead_id=trailhead_id).all()
+
+
+    def send_offer_email(self):
+        pass

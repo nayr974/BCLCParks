@@ -45,9 +45,8 @@ async def get_all_bookings(db: Session = Depends(get_db)):
 
 
 @router.post("/random")
-async def gen_bookings():
-    b = genBookings()
-    b.save()
+async def gen_bookings(db: Session = Depends(get_db)):
+    b = genBookings(db)
     return b
 
 
@@ -61,6 +60,6 @@ class RunLotteryRequestBody(BaseModel):
 async def run_lottery(body: RunLotteryRequestBody, db: Session = Depends(get_db)): 
     print(body.__dict__)
     th = Trailhead.get_trialhead_by_id(db, body.trailhead_id)
-    lp = LotteryPool(date=body.date, am_or_pm=body.am_or_pm, th=th, sess=db)    
+    lp = LotteryPool(date=body.date, am_or_pm=body.am_or_pm, th=th, db=db)    
 
-    runLottery(lp)
+    runLottery(lp,db)

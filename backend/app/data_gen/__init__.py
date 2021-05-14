@@ -22,9 +22,9 @@ def _genBooking(db, date: date, am_or_pm: bool, booking_type: str, th: Trailhead
 
 def genBookings(db): 
     l = LotteryPool(date=date.today(),
-                trailhead=db.query(Trailhead).first(),
-                booking_type= random.choice(["VEHICLE","PERSON"]),
-                am_or_pm=random.choice([True, False]))
+                th=db.query(Trailhead).first(),
+                am_or_pm=random.choice([True, False]),
+                db=db)
 
     gen_bookings_for_lottery_pool(l, db)
     
@@ -37,6 +37,6 @@ def gen_bookings_for_lottery_pool(l: LotteryPool, db) -> List[Any]:
     print(l.__dict__)
     while generated_interest < interest_output: 
         print('GENERATING MORE {} < {} ', generated_interest, interest_output)
-        bookings = _genBooking(db, l.date, l.am_or_pm, l.booking_type, l.trailhead, interest_output//8)
+        bookings = _genBooking(db, l.date, l.am_or_pm, l.trailhead.capacity_type, l.trailhead, interest_output//8)
         generated_interest += sum([b.num_of_persons for b in bookings])
     return
