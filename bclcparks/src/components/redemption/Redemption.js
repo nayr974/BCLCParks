@@ -4,6 +4,7 @@ import { groupBy, uniq } from "lodash";
 import { Wheel } from "react-custom-roulette";
 import React, { useState } from "react";
 import styles from "./Redemption.module.css";
+import QRCode from "qrcode.react";
 
 const data = [
   {
@@ -72,7 +73,17 @@ const Redemption = () => {
               <Typography.Title level={1} style={{ color: "white" }}>
                 You've got a pass a visit to <strong>a beautiful park</strong>.
               </Typography.Title>
-              <Typography.Title level={4} style={{ color: "white" }}>
+              <br />
+              <QRCode value="http://facebook.github.io/react/" />
+              <br />
+              <br />
+              <Typography.Title level={5} style={{ color: "white" }}>
+                Please print this pass and keep it with you during your visit.
+              </Typography.Title>
+              <Typography.Title
+                level={4}
+                style={{ color: "white", textAlign: "left" }}
+              >
                 We hope you have a very pleasant day and have lots of fun
                 playing in the trees. There may or may not be a beautiful pond
                 nearby with ducks and frogs, with really beautiful scenery. The

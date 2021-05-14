@@ -30,7 +30,9 @@ const Admin = () => {
     dispatch(getReservations());
     setLoaded(true);
   }
-  return (
+  return !loaded ? (
+    <div>Loading.</div>
+  ) : (
     <div style={{ paddingTop: "48px" }}>
       <Row gutter={[24, 24]} justify="center">
         <Col span={24}>

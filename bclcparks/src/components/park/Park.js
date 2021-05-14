@@ -40,7 +40,7 @@ const Park = (props) => {
             <Typography.Title
               level={5}
             >{`${trail.trailhead_name} (${trail.capacity_type})`}</Typography.Title>
-            {trail.am_capacity && (
+            {trail.am_capacity !== 0 && (
               <Button
                 type="ghost"
                 style={{ color: "white" }}
@@ -51,10 +51,10 @@ const Park = (props) => {
                   setBooking(true);
                 }}
               >
-                Early Bird
+                {trail.pm_capacity !== 0 ? "Early Bird" : "Day Pass"}
               </Button>
             )}
-            {trail.pm_capacity && (
+            {trail.pm_capacity !== 0 && (
               <Button
                 type="ghost"
                 block

@@ -30,7 +30,7 @@ const ParkReservation = (props) => {
         <Form.Item label="Phone:" name="phone_no" rules={[{ required: true }]}>
           <Input />
         </Form.Item>
-        {props.initialValues.booking_type === "PERSON" && (
+        {props.initialValues.booking_type === "Trail" && (
           <Form.Item
             label="Number of people:"
             name="num_of_persons"
@@ -39,7 +39,7 @@ const ParkReservation = (props) => {
             <Input />
           </Form.Item>
         )}
-        {props.initialValues.booking_type === "VEHICLE" && (
+        {props.initialValues.booking_type === "Vehicle" && (
           <Form.Item
             label="Vehicle license plate"
             name="vehicle_licence_plate"
