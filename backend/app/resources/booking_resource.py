@@ -43,7 +43,6 @@ async def get_all_bookings():
 @router.post("/random")
 async def gen_bookings():
     b: Booking = Booking(
-        id=1,
         email="help@gmail.com",
         phone_no="111-111-1111",
         passcode="123456",
