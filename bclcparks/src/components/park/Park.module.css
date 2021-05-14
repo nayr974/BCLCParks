@@ -29,6 +29,10 @@
   border-bottom: 0px;
 }
 
+.white {
+  color: #fff !important;
+}
+
 .cardgrid {
   width: 46%;
   margin: 2%;

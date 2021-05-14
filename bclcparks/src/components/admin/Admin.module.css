@@ -1,0 +1,5 @@
+.bg {
+  box-shadow: 2px 2px 8px #000, 2px 2px 5px #000;
+  background-color: rgba(0, 51, 102, 0.8);
+  padding: 12px;
+}

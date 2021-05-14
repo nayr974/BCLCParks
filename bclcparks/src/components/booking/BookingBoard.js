@@ -88,15 +88,15 @@ const BookingBoard = () => {
           />
           <div className={styles.titleContainer}>
             <span className={styles.subtitle}>
-              Your <strong>chance</strong> to win a lifetime experience at a{" "}
-              <strong>BC park</strong>.
+              Your chance to win a <strong>lifetime experience</strong> at a BC
+              park.
             </span>
           </div>
         </div>
       </Col>
-      {parks.map((park) => (
+      {parks.map((park, index) => (
         <Col span={12}>
-          <Park parkName={park} trailHeads={trailHeads[park]} />
+          <Park index={index} parkName={park} trailHeads={trailHeads[park]} />
         </Col>
       ))}
     </Row>

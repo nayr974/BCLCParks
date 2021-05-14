@@ -7,9 +7,10 @@ import { Card, Modal, Button, Typography } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import ParkReservation from "./ParkReservation";
 import { submitReservation } from "app/bookingSlice";
-//import TaskPriorityIcon from "./TaskPriorityIcon";
+import TreeIcon from "./TreeIcon";
 
 const propTypes = {
+  index: PropTypes.number.isRequired,
   parkName: PropTypes.any.isRequired,
   trailHeads: PropTypes.any.isRequired,
 };
@@ -31,8 +32,8 @@ const Park = (props) => {
       <Card
         hoverable
         className={styles.park}
-        title={props.parkName}
-        //extra={<ParkTreeIcon parkType={props.task.priority} />}
+        title={<h1 className={styles.white}>{props.parkName}</h1>}
+        extra={<TreeIcon index={props.index} />}
       >
         {props.trailHeads.map((trail) => (
           <Card.Grid className={styles.cardgrid}>
@@ -50,7 +51,7 @@ const Park = (props) => {
                   setBooking(true);
                 }}
               >
-                AM
+                Early Bird
               </Button>
             )}
             {trail.pm_capacity && (
@@ -64,7 +65,7 @@ const Park = (props) => {
                   setBooking(true);
                 }}
               >
-                PM
+                Night Owl
               </Button>
             )}
           </Card.Grid>

@@ -70,7 +70,7 @@ const Redemption = () => {
           {!spinning && (
             <div className={styles.bg}>
               <Typography.Title level={1} style={{ color: "white" }}>
-                You've won a visit to a beautiful park.
+                You've got a pass a visit to <strong>a beautiful park</strong>.
               </Typography.Title>
               <Typography.Title level={4} style={{ color: "white" }}>
                 We hope you have a very pleasant day and have lots of fun
