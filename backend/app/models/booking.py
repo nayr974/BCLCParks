@@ -1,8 +1,14 @@
 import datetime
 import random
-from models.base import Base
-from sqlalchemy import Column, Integer, String, DateTime, Date, Boolean, ForeignKey
+
+from sqlalchemy import Column, Integer, String, DateTime, Date, Boolean, ForeignKey, Enum
 from sqlalchemy.orm import relationship
+
+from models.base import Base
+from models.model_enums import BookingState
+
+
+    
 
 class Booking(Base):
     __tablename__ = 'booking'
@@ -18,7 +24,7 @@ class Booking(Base):
     num_of_persons = Column(Integer) # required if booking_type = PERSON
     vehicle_licence_plate = Column(String(12)) # required if booking_type = VEHICLE
     application_datetime = Column(DateTime, nullable=False, default=datetime.datetime.now())
-    state = Column(String(20))
+    state = Column(Enum(BookingState, values_callable=lambda obj: [e.value for e in obj]))
 
     trailhead = relationship("Trailhead")
 
