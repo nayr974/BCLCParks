@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Space, Row, Col, Typography } from "antd";
+import { Space, Row, Col, Typography, Table } from "antd";
 import { groupBy, uniq } from "lodash";
 import styles from "./Admin.module.css";
 import { selectReservations, getReservations } from "app/bookingSlice";
@@ -36,9 +36,33 @@ const Admin = () => {
     <div style={{ paddingTop: "48px" }}>
       <Row gutter={[24, 24]} justify="center">
         <Col span={24}>
-          WUT
-          {reservations &&
-            reservations.map((reservation) => JSON.stringify(reservation))}
+          {reservations && (
+            <Table
+              dataSource={reservations}
+              columns={[
+                {
+                  title: "Trail ID",
+                  dataIndex: "trailhead_id",
+                  key: "trailhead_id",
+                },
+                {
+                  title: "State",
+                  dataIndex: "state",
+                  key: "state",
+                },
+                {
+                  title: "Email",
+                  dataIndex: "email",
+                  key: "email",
+                },
+                {
+                  title: "Phone",
+                  dataIndex: "phone_no",
+                  key: "phone_no",
+                },
+              ]}
+            />
+          )}
         </Col>
       </Row>
     </div>
