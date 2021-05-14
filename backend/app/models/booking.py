@@ -8,7 +8,7 @@ class Booking(Base):
     __tablename__ = 'booking'
 
     id = Column(Integer, primary_key=True)
-    email = Column(String(120), unique=True, nullable=False)
+    email = Column(String(120), nullable=False)
     phone_no = Column(String(15))
     passcode = Column(String(20), nullable=False, default=''.join(random.choice('0123456789ABCDEF') for i in range(6)))
     trailhead_id = Column(Integer, ForeignKey('trailhead.id'))
@@ -18,7 +18,7 @@ class Booking(Base):
     num_of_persons = Column(Integer) # required if booking_type = PERSON
     vehicle_licence_plate = Column(String(12)) # required if booking_type = VEHICLE
     application_datetime = Column(DateTime, nullable=False, default=datetime.datetime.now())
-    
+    state = Column(String(20))
 
     trailhead = relationship("Trailhead")
 

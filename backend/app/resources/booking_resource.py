@@ -44,7 +44,6 @@ async def get_all_bookings(db: Session = Depends(get_db)):
 @router.post("/random")
 async def gen_bookings(db: Session = Depends(get_db)):
     b: Booking = Booking(
-        id=1,
         email="help@gmail.com",
         phone_no="111-111-1111",
         passcode="123456",
