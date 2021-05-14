@@ -7,7 +7,7 @@ from data_gen import genBookings
 from managers.lottery import LotteryPool, runLottery
 from models.trailhead import Trailhead
 
-from .resource_models import Booking_Model
+from .resource_models import *
 from models.booking import Booking
 from database import get_db
  
@@ -50,14 +50,8 @@ async def gen_bookings(db: Session = Depends(get_db)):
     return b
 
 
-class RunLotteryRequestBody(BaseModel):
-    date: date
-    am_or_pm: bool
-    trailhead_id: int
-
-
 @router.post("/run-lottery")
-async def run_lottery(body: RunLotteryRequestBody, db: Session = Depends(get_db)): 
+async def run_lottery(body: RunLotteryRequest, db: Session = Depends(get_db)): 
     print(body.__dict__)
     th = Trailhead.get_trialhead_by_id(db, body.trailhead_id)
     lp = LotteryPool(date=body.date, am_or_pm=body.am_or_pm, th=th, db=db)    

@@ -7,19 +7,25 @@ from models.booking import Booking
 from models.booking_states import BookingState
 
 class LotteryPool(object):
+
+    _all_bookings: List[Booking] = []
+
     def __init__(self, date: datetime.date, th: Trailhead, am_or_pm:bool, db):
         self.date = date
         self.trailhead = th
         self.am_or_pm = am_or_pm
         self.db_session = db
 
+    def get_allocated_bookings(self): 
+        return [b for b in self.get_all_bookings() if b.state != "WAITING"]
+
+    def get_current_allocation(self):
+        return len(self.get_allocated_bookings()) if self.trailhead.capacity_type == "Vehicle" else sum([b.num_of_persons for b in self.get_allocated_bookings()])
+
+
     def get_total_interest(self):   
-        return self.db_session.query(Booking).filter(
-                    Booking.date==self.date, 
-                    Booking.trailhead_id==self.trailhead.id,
-                    Booking.booking_type==self.trailhead.capacity_type, 
-                    Booking.am_or_pm==self.am_or_pm).all()
-        
+        return len(self.get_all_bookings()) if self.trailhead.capacity_type == "Vehicle" else sum([b.num_of_persons for b in self.get_all_bookings()])
+
     def get_max_allocation(self):
         return self.trailhead.am_capacity if self.am_or_pm else self.trailhead.pm_capacity
 
@@ -30,8 +36,10 @@ class LotteryPool(object):
                     Booking.booking_type==self.trailhead.capacity_type, 
                     Booking.am_or_pm==self.am_or_pm)
 
-    def all_bookings(self):
-        return self._all_booking_query().all()
+    def get_all_bookings(self):
+        if not self._all_bookings:
+            self._all_bookings = self._all_booking_query().all()
+        return self._all_bookings
 
     def lottery_pool(self):
         return self._all_booking_query().filter_by(state="WAITING").all()
@@ -40,19 +48,18 @@ class LotteryPool(object):
 
 def runLottery(l: LotteryPool, db) -> List[Booking]:
 
-    all_bookings: List[Booking] = l.all_bookings()
-    total_interest: int = len(all_bookings) if l.trailhead.capacity_type == "Vehicle" else sum([b.num_of_persons for b in all_bookings])
+    all_bookings: List[Booking] = l.get_all_bookings()
+    total_interest: int = l.get_total_interest()
     max_allocation: int = l.get_max_allocation()
+    allocated_bookings: List[Booking] = l.get_allocated_bookings()
+    current_allocation: int = l.get_current_allocation()
 
-    allocated_bookings: List[Booking] = [b for b in all_bookings if b.state != "WAITING"]
     new_winners: List[Booking] = []
-    current_allocation: int = len(allocated_bookings) if l.trailhead.capacity_type == "Vehicle" else sum([b.num_of_persons for b in allocated_bookings])
-
+    
     print('Total Reservations: {}'.format(len(all_bookings)))
     print("Active Reservations {}".format(len(allocated_bookings)))
     print('Trailhead Capacity: {}'.format(max_allocation))
     print('Allocation Request: {}'.format(total_interest))
-    print('Current Allocation: {}'.format(current_allocation))
 
     while current_allocation < max_allocation:
         winner: Booking = random.choice(all_bookings)
