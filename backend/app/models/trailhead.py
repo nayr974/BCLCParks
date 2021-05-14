@@ -19,11 +19,11 @@ class Trailhead(Base):
 
     @classmethod
     def get_trialhead_by_id(cls, db, id):
-        return db.query(cls).filter(id=id).one_or_none()
+        return db.query(cls).filter(Trailhead.id==id).one_or_none()
 
     @classmethod
     def get_all_trailheads_by_park_name(cls, db, park_name):
-        return db.query(cls).filter(park_name=park_name).all()
+        return db.query(cls).filter(Trailhead.park_name==park_name).all()
 
     @classmethod
     def get_all_trailheads(cls, db):
