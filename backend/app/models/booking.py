@@ -6,8 +6,6 @@ from sqlalchemy.orm import relationship
 
 from models.base import Base
 from models.model_enums import BookingState
-
-
     
 
 class Booking(Base):
@@ -40,7 +38,7 @@ class Booking(Base):
         return db.query(cls).filter(id=id).one_or_none()
 
     @classmethod
-    def get_all_bookings(cls):
+    def get_all_bookings(cls, db):
         return db.query(cls).all()
 
     @classmethod

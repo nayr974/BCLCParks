@@ -4,7 +4,7 @@ from typing import List
 
 from models.trailhead import Trailhead
 from models.booking import Booking
-from models.booking_states import BookingState
+from models.model_enums import BookingState,CapacityType
 
 class LotteryPool(object):
 
@@ -17,14 +17,14 @@ class LotteryPool(object):
         self.db_session = db
 
     def get_allocated_bookings(self): 
-        return [b for b in self.get_all_bookings() if b.state != "WAITING"]
+        return [b for b in self.get_all_bookings() if b.state != BookingState.waiting]
 
     def get_current_allocation(self):
-        return len(self.get_allocated_bookings()) if self.trailhead.capacity_type == "Vehicle" else sum([b.num_of_persons for b in self.get_allocated_bookings()])
+        return len(self.get_allocated_bookings()) if self.trailhead.capacity_type == CapacityType.Vehicle else sum([b.num_of_persons for b in self.get_allocated_bookings()])
 
 
     def get_total_interest(self):   
-        return len(self.get_all_bookings()) if self.trailhead.capacity_type == "Vehicle" else sum([b.num_of_persons for b in self.get_all_bookings()])
+        return len(self.get_all_bookings()) if self.trailhead.capacity_type == BookingState.waiting else sum([b.num_of_persons for b in self.get_all_bookings()])
 
     def get_max_allocation(self):
         return self.trailhead.am_capacity if self.am_or_pm else self.trailhead.pm_capacity
@@ -40,10 +40,6 @@ class LotteryPool(object):
         if not self._all_bookings:
             self._all_bookings = self._all_booking_query().all()
         return self._all_bookings
-
-    def lottery_pool(self):
-        return self._all_booking_query().filter_by(state="WAITING").all()
-
 
 
 def runLottery(l: LotteryPool, db) -> List[Booking]:
@@ -63,7 +59,7 @@ def runLottery(l: LotteryPool, db) -> List[Booking]:
 
     while current_allocation < max_allocation:
         winner: Booking = random.choice(all_bookings)
-        if l.trailhead.capacity_type == 'Trail':
+        if l.trailhead.capacity_type == CapacityType.trail:
             current_allocation +=  winner.num_of_persons
         else: #Vehicles allocation is one per booking
             current_allocation += 1
@@ -79,4 +75,3 @@ def runLottery(l: LotteryPool, db) -> List[Booking]:
     for b in new_winners:   
         b.send_offer_email()
     pass
-

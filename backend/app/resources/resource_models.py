@@ -31,7 +31,6 @@ class RunLotteryRequest(BaseModel):
     trailhead_id: int
 
 
-
 class TrailheadReservationsRequest(BaseModel):
     date: date
     am_or_pm: bool
