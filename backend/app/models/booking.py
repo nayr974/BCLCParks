@@ -34,8 +34,8 @@ class Booking(Base):
         return db.query(cls).filter(email=email, date=date, trailhead_id=trailhead_id).one_or_none()
 
     @classmethod
-    def get_booking_by_id(cls, db, id):
-        return db.query(cls).filter(id=id).one_or_none()
+    def get_by_id(cls, db, id):
+        return db.query(cls).filter(cls.id==id).one_or_none()
 
     @classmethod
     def get_all_bookings(cls, db):
