@@ -20,7 +20,7 @@ class LotteryPool(object):
         return [b for b in self.get_all_bookings() if b.state != BookingState.waiting]
 
     def get_current_allocation(self):
-        return len(self.get_allocated_bookings()) if self.trailhead.capacity_type == CapacityType.Vehicle else sum([b.num_of_persons for b in self.get_allocated_bookings()])
+        return len(self.get_allocated_bookings()) if self.trailhead.capacity_type == CapacityType.vehicle else sum([b.num_of_persons for b in self.get_allocated_bookings()])
 
 
     def get_total_interest(self):   
@@ -33,7 +33,6 @@ class LotteryPool(object):
         return self.db_session.query(Booking).filter(
                     Booking.trailhead_id==self.trailhead.id,
                     Booking.date== self.date,
-                    Booking.booking_type==self.trailhead.capacity_type, 
                     Booking.am_or_pm==self.am_or_pm)
 
     def get_all_bookings(self):
