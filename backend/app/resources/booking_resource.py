@@ -36,6 +36,21 @@ async def get_booking(booking_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail='No booking found for that ID.')
     return booking
 
+@router.patch("/{booking_id}")
+async def update_booking(booking_id: int, booking: Booking_ModelPatch, db: Session = Depends(get_db)):
+    existing_booking = Booking.get_by_id(db, booking_id)
+    if not booking:
+        raise HTTPException(status_code=404,
+                            detail="bookig not found")
+
+    for key, val in booking.dict(exclude_unset=True).items():
+        setattr(existing_booking,key,val) 
+
+    db.add(existing_booking)
+    db.commit()
+
+    return existing_booking
+
 
 @router.get("/")
 async def get_all_bookings(db: Session = Depends(get_db)):

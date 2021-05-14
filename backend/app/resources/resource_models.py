@@ -16,6 +16,13 @@ class Booking_Model(BaseModel):
     vehicle_licence_plate: str
     application_datetime: date
 
+class Booking_ModelPatch(BaseModel):
+    email: Optional[str]
+    phone_no: Optional[str]
+    passcode: Optional[str]
+    num_of_persons: Optional[int]
+    vehicle_licence_plate: Optional[str]
+
 
 class Trailhead_Model(BaseModel):
     id: int
