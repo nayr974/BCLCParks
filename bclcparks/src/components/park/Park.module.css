@@ -14,10 +14,28 @@
 .park {
   border-radius: 0.7em;
   padding: 1em;
-  border-left-color: #dedede;
-  border-right-color: #dedede;
+  border-left-color: rgba(0, 0, 0, 0.3);
+  border-right-color: rgba(0, 0, 0, 0.3);
   border-width: 12px;
   border-top-width: 0;
   border-bottom-width: 0;
   border-style: solid;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.park > div {
+  color: #fff !important;
+  border-bottom: 0px;
+}
+
+.cardgrid {
+  border-radius: 12px;
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 0 0 0 rgba(255, 255, 255, 0), 0 1px 0 0 rgba(255, 255, 255, 0),
+    1px 1px 0 0 rgba(255, 255, 255, 0), 1px 0 0 0 rgba(255, 255, 255, 0) inset,
+    0 1px 0 0 rgba(255, 255, 255, 0) inset;
+}
+.cardgrid > h5 {
+  color: #fff !important;
 }

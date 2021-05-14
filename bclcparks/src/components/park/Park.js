@@ -24,13 +24,17 @@ const Park = (props) => {
         //extra={<ParkTreeIcon parkType={props.task.priority} />}
       >
         {props.trailHeads.map((trail) => (
-          <Card.Grid style={{ width: "50%", textAlign: "center" }}>
+          <Card.Grid
+            style={{ width: "50%", textAlign: "center" }}
+            className={styles.cardgrid}
+          >
             <Typography.Title
               level={5}
             >{`${trail.trailhead_name} (${trail.capacity_type})`}</Typography.Title>
             {trail.am_capacity && (
               <Button
-                type="primary"
+                type="ghost"
+                style={{ color: "white" }}
                 block
                 onClick={() => {
                   setTrailhead(trail);
@@ -43,9 +47,9 @@ const Park = (props) => {
             )}
             {trail.pm_capacity && (
               <Button
-                type="primary"
+                type="ghost"
                 block
-                style={{ marginTop: "5px" }}
+                style={{ marginTop: "5px", color: "white" }}
                 onClick={() => {
                   setTrailhead(trail);
                   setAmPm(false);

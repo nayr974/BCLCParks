@@ -12,29 +12,24 @@ function App() {
       <div className="App" className={styles.bg}>
         <div className="AppContainer">
           <div>
-            <div className={styles.header}>
-              <img
-                src={"/img/BCLC_Logo.svg"}
-                style={{ height: "30px" }}
-                alt="BC(LC)Parks Logo"
-              />
-              <img
-                src={"/img/logo-bcparks-text.png"}
-                style={{ height: "30px" }}
-                alt="BC(LC)Parks Logo"
-              />
-              <div className={styles.titleContainer}>
-                <span className={styles.subtitle}>
-                  Your chance to win a lifetime experience at one BC park
-                </span>
-              </div>
-              <Space className={styles.buttons}>
-                <div></div>
-              </Space>
-            </div>
             <div className={styles.page}>
               <Switch>
                 <Route path="/redeem">
+                  <div className={styles.header}>
+                    <img
+                      src={"/img/BCLC_Logo.svg"}
+                      style={{ height: "30px" }}
+                      alt="BC(LC)Parks Logo"
+                    />
+                    <img
+                      src={"/img/logo-bcparks-text.png"}
+                      style={{ height: "30px" }}
+                      alt="BC(LC)Parks Logo"
+                    />
+                    <Space className={styles.buttons}>
+                      <div></div>
+                    </Space>
+                  </div>
                   <Redemption />
                 </Route>
                 <Route path="/">
