@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from typing import Optional, List
 from datetime import date
 
+from models.model_enums import BookingState
 
 class Booking_Model(BaseModel):
     id: int
@@ -22,7 +23,7 @@ class Booking_ModelPatch(BaseModel):
     passcode: Optional[str]
     num_of_persons: Optional[int]
     vehicle_licence_plate: Optional[str]
-
+    state: Optional[BookingState]
 
 class Trailhead_Model(BaseModel):
     id: int

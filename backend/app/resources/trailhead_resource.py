@@ -8,7 +8,7 @@ from database import get_db
 
 router = APIRouter(
     prefix="/trailhead",
-    tags=["booking"],
+    tags=["trailhead"],
 )
 
 
