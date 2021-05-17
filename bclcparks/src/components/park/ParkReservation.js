@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input, Radio, Form, Space } from "antd";
+import { Button, Input, Radio, Form, DatePicker } from "antd";
 import { TagsOutlined } from "@ant-design/icons";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -24,6 +24,11 @@ const ParkReservation = (props) => {
         <Form.Item hidden name="trailhead_id" rules={[{ required: true }]} />
         <Form.Item hidden name="am_or_pm" rules={[{ required: true }]} />
         <Form.Item hidden name="booking_type" rules={[{ required: true }]} />
+
+        <Form.Item label="Date:" name="date" rules={[{ required: true }]}>
+          <DatePicker />
+        </Form.Item>
+
         <Form.Item label="Email:" name="email" rules={[{ required: true }]}>
           <Input />
         </Form.Item>
